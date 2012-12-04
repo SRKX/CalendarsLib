@@ -1,0 +1,5 @@
+c:\users\jérémie smaga\documents\visual studio 2010\Projects\CalendarsLib\CalendarsTest\bin\Debug\CalendarsTest.dll
+c:\users\jérémie smaga\documents\visual studio 2010\Projects\CalendarsLib\CalendarsTest\bin\Debug\CalendarsTest.pdb
+c:\users\jérémie smaga\documents\visual studio 2010\Projects\CalendarsLib\CalendarsTest\obj\Debug\CalendarsTest.dll
+c:\users\jérémie smaga\documents\visual studio 2010\Projects\CalendarsLib\CalendarsTest\obj\Debug\CalendarsTest.pdb
+C:\Users\Jérémie Smaga\documents\visual studio 2010\Projects\CalendarsLib\CalendarsTest\obj\Debug\CalendarsTest.csprojResolveAssemblyReference.cache

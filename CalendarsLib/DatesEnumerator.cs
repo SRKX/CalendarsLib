@@ -7,7 +7,6 @@ namespace CalendarsLib
 {
     public abstract class DatesEnumerator:IEnumerator<DateTime>
     {
-
         public DateTime MinValue { get; private set; }
 
         public DateTime MaxValue { get; private set; }
@@ -20,17 +19,22 @@ namespace CalendarsLib
 
         public DatesEnumerator(DateTime startingDate)
             :this(startingDate,DateTime.MinValue,DateTime.MaxValue)
-        {
+        { }
 
-        }
+        public DatesEnumerator(DateTime minValue, DateTime maxValue)
+            :this(minValue,minValue,maxValue)
+        { }
 
         public DatesEnumerator(DateTime startingDate, DateTime minValue, DateTime maxValue)
         {
-            Current = startingDate;
-            if (minValue <= maxValue)
-                throw new ArgumentException("MinValue cannot be later than MaxValue");
+            if (minValue >= maxValue)
+                throw new ArgumentException("MinValue cannot be later than MaxValue","minValue");
             MinValue = minValue;
             MaxValue = maxValue;
+            if (IsPossible(startingDate))
+                Current = startingDate;
+            else
+                throw new ArgumentOutOfRangeException("startingDate");
         }
 
         public DateTime Current
@@ -51,12 +55,20 @@ namespace CalendarsLib
 
         public bool MoveNext()
         {
-            DateTime oldCurrent = Current;
-            bool moveNextResult = _InternalMoveNext();
+            DateTime? nextDate = _InternalMoveNext();
+            bool moveNextResult;
             //Checks that the date is within the bounds.
-            if (Current > MaxValue)
+            if (nextDate.HasValue && nextDate.Value > MaxValue)
             {
-                Current = oldCurrent;
+                moveNextResult = false;
+            }
+            else if (nextDate.HasValue)
+            {
+                Current = nextDate.Value;
+                moveNextResult = true;
+            }
+            else
+            {
                 moveNextResult = false;
             }
             return moveNextResult;
@@ -64,23 +76,41 @@ namespace CalendarsLib
 
         public bool MovePrevious()
         {
-            DateTime oldCurrent = Current;
-            bool movePreviousResult = _InternalMovePrevious();
+            //DateTime oldCurrent = Current;
+            DateTime? previousDate =_InternalMovePrevious();
+            bool movePreviousResult;
             //Checks that the date is within the bounds.
-            if (Current < MinValue)
+            if (previousDate.HasValue && previousDate.Value < MinValue)
             {
-                Current = oldCurrent;
+                movePreviousResult = false;
+            }
+            else if (previousDate.HasValue)
+            {
+                Current = previousDate.Value;
+                movePreviousResult = true;
+            }
+            else
+            {
                 movePreviousResult = false;
             }
             return movePreviousResult;
         }
 
-        protected abstract bool _InternalMoveNext();
-        protected abstract bool _InternalMovePrevious();
+
+        protected abstract DateTime? _InternalMoveNext();
+        protected abstract DateTime? _InternalMovePrevious();
 
         public virtual void Reset()
         {
             Current = MinValue;
         }
+
+        public virtual bool IsPossible(DateTime t)
+        {
+            return t >= MinValue && t <= MaxValue;
+        }
+
+
+        public abstract DatesEnumerator Clone();
     }
 }

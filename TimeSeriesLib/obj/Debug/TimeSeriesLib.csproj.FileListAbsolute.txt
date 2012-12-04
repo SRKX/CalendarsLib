@@ -1,0 +1,7 @@
+C:\Users\Jérémie Smaga\documents\visual studio 2010\Projects\CalendarsLib\TimeSeriesLib\bin\Debug\TimeSeriesLib.dll
+C:\Users\Jérémie Smaga\documents\visual studio 2010\Projects\CalendarsLib\TimeSeriesLib\bin\Debug\TimeSeriesLib.pdb
+C:\Users\Jérémie Smaga\documents\visual studio 2010\Projects\CalendarsLib\TimeSeriesLib\bin\Debug\CalendarsLib.dll
+C:\Users\Jérémie Smaga\documents\visual studio 2010\Projects\CalendarsLib\TimeSeriesLib\bin\Debug\CalendarsLib.pdb
+C:\Users\Jérémie Smaga\documents\visual studio 2010\Projects\CalendarsLib\TimeSeriesLib\obj\Debug\TimeSeriesLib.csprojResolveAssemblyReference.cache
+C:\Users\Jérémie Smaga\documents\visual studio 2010\Projects\CalendarsLib\TimeSeriesLib\obj\Debug\TimeSeriesLib.dll
+C:\Users\Jérémie Smaga\documents\visual studio 2010\Projects\CalendarsLib\TimeSeriesLib\obj\Debug\TimeSeriesLib.pdb

@@ -2,3 +2,4 @@ c:\users\jérémie smaga\documents\visual studio 2010\Projects\CalendarsLib\Cale
 c:\users\jérémie smaga\documents\visual studio 2010\Projects\CalendarsLib\CalendarsLib\bin\Debug\CalendarsLib.pdb
 c:\users\jérémie smaga\documents\visual studio 2010\Projects\CalendarsLib\CalendarsLib\obj\Debug\CalendarsLib.dll
 c:\users\jérémie smaga\documents\visual studio 2010\Projects\CalendarsLib\CalendarsLib\obj\Debug\CalendarsLib.pdb
+C:\Users\Jérémie Smaga\documents\visual studio 2010\Projects\CalendarsLib\CalendarsLib\obj\Debug\CalendarsLib.csprojResolveAssemblyReference.cache
