@@ -158,6 +158,39 @@ namespace TimeSeriesLib
                 return res;
             }
         }
+
+        public List<Hole> FindHoles(ExportMode mode=ExportMode.LIMITED)
+        {
+            List<Hole> holes = new List<Hole>();
+
+            DoubleTimeSeries ts = GetDoubleTimeSeries(mode);
+
+            DateTime? holeStart = null;
+            DateTime? holeEnd = null;
+            foreach (var pair in ts)
+            {
+                if (pair.Value.HasValue && holeStart.HasValue)
+                {
+                    holes.Add(new Hole(holeStart.Value, holeEnd.Value));
+                    holeStart = null;
+                    holeEnd = null;
+                }
+                if (!pair.Value.HasValue)
+                {
+                    if (!holeStart.HasValue)
+                    {
+                        holeStart = pair.Key;
+                    }
+                    holeEnd = pair.Key;
+                }
+            }
+
+            if (holeStart.HasValue)
+                holes.Add(new Hole(holeStart.Value, holeEnd.Value));
+
+            return holes;
+
+        }
         #endregion
 
 

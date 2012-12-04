@@ -43,6 +43,7 @@
     <Compile Include="CalendarException.cs" />
     <Compile Include="CalendarTimeSeries.cs" />
     <Compile Include="DoubleTimeSeries.cs" />
+    <Compile Include="Hole.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

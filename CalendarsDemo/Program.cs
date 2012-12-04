@@ -42,14 +42,22 @@ namespace CalendarsDemo
             CalendarDoubleTimeSeries ts = new CalendarDoubleTimeSeries(cal2);
             ts["02.10.2012"] = 1;
             ts["05.10.2012"] = 2;
-            printTS(ts);
-            ts.Remove("05.10.2012");
-            printTS(ts);
-            ts["05.10.2012"] = 2;
+            //printTS(ts);
+            //ts.Remove("05.10.2012");
+            //printTS(ts);
+            //ts["05.10.2012"] = 2;
             ts["10.10.2012"] = 3;
             printTS(ts);
-            printTS(ts.GetDoubleTimeSeries(CalendarDoubleTimeSeries.ExportMode.FULL));
-            printTS(ts.GetDoubleTimeSeries(CalendarDoubleTimeSeries.ExportMode.LIMITED));
+
+            List<Hole> holes = ts.FindHoles(CalendarDoubleTimeSeries.ExportMode.FULL);
+
+            foreach (var hole in holes)
+            {
+                Console.WriteLine(hole.ToString());
+            }
+
+            //printTS(ts.GetDoubleTimeSeries(CalendarDoubleTimeSeries.ExportMode.FULL));
+            //printTS(ts.GetDoubleTimeSeries(CalendarDoubleTimeSeries.ExportMode.LIMITED));
             Console.ReadLine();
         }
 
