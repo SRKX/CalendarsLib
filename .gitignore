@@ -96,6 +96,7 @@ sql
 TestResults
 [Tt]est[Rr]esult*
 *.vsmdi
+*.testsettings
 *.Cache
 ClientBin
 [Ss]tyle[Cc]op.*
