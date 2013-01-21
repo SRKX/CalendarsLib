@@ -6,8 +6,8 @@ using System.Text;
 namespace CalendarsLib
 {
     /// <summary>
-    /// <c>Calendar</c> is an abastract representation of a continous collection of dates (represented as <see cref="DateTime"/>).
-    /// It allows user to move through the calendar either day by day or to request a period of the current calendar to which the user can iterate.
+    /// <c>Calendar</c> is an abstract representation of a continous collection of dates (represented as <see cref="System.DateTime"/>).
+    /// It allows users to move through the calendar either day by day or to request a period of the current calendar to which the user can iterate.
     /// The <c>Calendar</c> is setup with a <see cref="DatesEnumerator"/> which will determine how the calendar evolves through time.
     /// </summary>
     /// <remarks>
@@ -19,6 +19,9 @@ namespace CalendarsLib
         private DatesEnumerator _currentEnumerator;
 
 
+        /// <summary>
+        /// The name of the calendar.
+        /// </summary>
         public abstract string Name
         {
             get;
@@ -55,17 +58,7 @@ namespace CalendarsLib
             _currentEnumerator = enumerator;
         }
 
-        //public void ReConfigure(DateTime startingDate)
-        //{
-        //    ReConfigure(startingDate, DateTime.MinValue, DateTime.MaxValue);
-        //}
-
-        //public void ReConfigure(DateTime startingDate, DateTime minValue, DateTime maxValue)
-        //{
-        //    MinValue = minValue;
-        //    MaxValue = maxValue;
-        //}
-
+        #region Implementation of IEnumerable<DateTime>
         public IEnumerator<DateTime> GetEnumerator()
         {
             return ToList(MinValue, MaxValue).GetEnumerator();
@@ -77,6 +70,7 @@ namespace CalendarsLib
         {
             return ToList(MinValue, MaxValue).GetEnumerator();
         }
+        #endregion
 
         public List<DateTime> ToList(DateTime from, DateTime to)
         {
@@ -108,27 +102,26 @@ namespace CalendarsLib
         /// <summary>
         /// Moves the calendar to the provided date.
         /// </summary>
-        /// <param name="t">The date to which the calendar should go.</param>
-        /// <returns></returns>
-        public void GoTo(DateTime t)
+        /// <param name="date">The date to which the calendar should go.</param>
+        public void GoTo(DateTime date)
         {
-            if (t > CurrentDate)
+            if (date > CurrentDate)
             {
-                while (t > CurrentDate)
+                while (date > CurrentDate)
                 {
                     DateTime? nextPossible = Next();
-                    if (!nextPossible.HasValue) throw new ArgumentOutOfRangeException("t");
+                    if (!nextPossible.HasValue) throw new ArgumentOutOfRangeException("date");
                 }
             }
-            else if (t < CurrentDate)
+            else if (date < CurrentDate)
             {
-                while (t < CurrentDate)
+                while (date < CurrentDate)
                 {
                     DateTime? previousPossible = Previous();
-                    if (!previousPossible.HasValue) throw new ArgumentOutOfRangeException("t");
+                    if (!previousPossible.HasValue) throw new ArgumentOutOfRangeException("date");
                 }
             }
-            else if (t != CurrentDate) throw new ArgumentOutOfRangeException("t");
+            else if (date != CurrentDate) throw new ArgumentOutOfRangeException("date");
         }
 
         public virtual bool IsPossible(DateTime t)
@@ -161,6 +154,10 @@ namespace CalendarsLib
 
         public abstract Calendar Clone(DateTime currentDate, DateTime minValue, DateTime maxValue);
 
+        /// <summary>
+        /// Gets a litteral representation of the calendar.
+        /// </summary>
+        /// <returns>A litteral representation of the calendar.</returns>
         public override string ToString()
         {
             return Name + "(" + MinValue.ToShortDateString() + " ... " + MaxValue.ToShortDateString() + ")";
