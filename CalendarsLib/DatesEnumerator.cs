@@ -53,7 +53,7 @@ namespace CalendarsLib
         /// <param name="maxValue">The upper bound of the enumerator.</param>
         public DatesEnumerator(DateTime initialDate, DateTime minValue, DateTime maxValue)
         {
-            if (minValue >= maxValue)
+            if (minValue > maxValue)
                 throw new ArgumentException("minValue", "MinValue cannot be later than MaxValue");
             MinValue = minValue;
             MaxValue = maxValue;
